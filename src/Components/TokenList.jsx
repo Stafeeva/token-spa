@@ -2,29 +2,18 @@ import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 import { Row, Col, Button } from 'antd';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import SearchField from './SearchField.jsx';
 import TokenTable from './TokenTable.jsx';
 
-const tokens = [
-  {
-    key: '1',
-    tokenName: 'Test',
-    tokenTicker: 'blah',
-    totalSupply: '10000',
-    creationDate: 'test',
-    issuerName: 'Dylan The Dog',
-    template: '123',
-  },
-];
+import { fetchTokens } from '../actions';
 
 class TokenList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      tokens,
-    }
+    this.props.dispatch(fetchTokens());
   }
 
   @autobind filterTokens(filter) {
@@ -46,7 +35,7 @@ class TokenList extends Component {
 
   render () {
     const { filterTokens, onClickExportToCSV, onClickIssueToken } = this;
-    const { tokens } = this.state;
+    const { tokens } = this.props;
 
     return (
       <div>
@@ -68,4 +57,10 @@ class TokenList extends Component {
   }
 }
 
-export default TokenList;
+const mapStateToProps = state => {
+  return {
+    tokens: state.tokens,
+  };
+};
+
+export default connect(mapStateToProps)(TokenList);
