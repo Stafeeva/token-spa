@@ -4,7 +4,8 @@ module.exports = {
   mode: 'development',
   entry: './src/App.jsx',
   devServer: {
-    contentBase: './public'
+    contentBase: './public',
+    historyApiFallback: true,
   },
   output: {
     path: path.resolve(__dirname, 'public'),

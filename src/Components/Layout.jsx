@@ -1,14 +1,13 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { Row, Col, Menu } from 'antd';
-
-// import Menu from './Menu.jsx';
 
 const Layout = (props) => (
   <Row gutter={24}>
     <Col span={6}>
       <Menu>
-        <Menu.Item>Issue Token</Menu.Item>
-        <Menu.Item>Token List</Menu.Item>
+        <Menu.Item><Link to="/tokens/add">Issue Token</Link></Menu.Item>
+        <Menu.Item><Link to="/tokens">Token List</Link></Menu.Item>
       </Menu>
     </Col>
     <Col span={18}>
