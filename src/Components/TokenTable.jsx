@@ -11,7 +11,7 @@ const columns = [
   },
   {
     title: 'Token ticker',
-    dataIndex: 'tockenTicker',
+    dataIndex: 'tokenTicker',
     key: 'tockenTicker',
   },
   {
@@ -41,7 +41,7 @@ class TokenTable extends Component {
     tokens: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.string.isRequired,
       tokenName: PropTypes.string.isRequired,
-      tockenTicker: PropTypes.string.isRequired,
+      tokenTicker: PropTypes.string.isRequired,
       totalSupply: PropTypes.string.isRequired,
       creationDate: PropTypes.string.isRequired,
       issuerName: PropTypes.string.isRequired,

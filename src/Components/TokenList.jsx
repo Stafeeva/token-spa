@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 import { Row, Col, Button } from 'antd';
+import { Link } from "react-router-dom";
 
 import SearchField from './SearchField.jsx';
 import TokenTable from './TokenTable.jsx';
@@ -9,7 +10,7 @@ const tokens = [
   {
     key: '1',
     tokenName: 'Test',
-    tockenTicker: 'blah',
+    tokenTicker: 'blah',
     totalSupply: '10000',
     creationDate: 'test',
     issuerName: 'Dylan The Dog',
@@ -55,7 +56,7 @@ class TokenList extends Component {
             <SearchField onType={filterTokens}/>
           </Col>
           <Col span={3}>
-            <Button type="primary" onClick={onClickIssueToken}>Issue Token</Button>
+            <Button type="primary" onClick={onClickIssueToken}><Link to="/tokens/add">Issue Token</Link></Button>
           </Col>
           <Col span={3}>
             <Button type="primary" onClick={onClickExportToCSV}>Export To CSV</Button>

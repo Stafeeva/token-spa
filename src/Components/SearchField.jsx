@@ -24,7 +24,9 @@ class SearchField extends Component {
       search: value,
     });
 
-    onType(value);
+    if (value.length > 2) {
+      onType(value);
+    }
   }
 
   render() {
@@ -33,7 +35,12 @@ class SearchField extends Component {
 
     return (
       <div>
-        <Input onChange={onChangeSearch} value={search} type="text" placeholder="Search" />
+        <Input
+          onChange={onChangeSearch}
+          value={search}
+          type="text"
+          placeholder="Search"
+        />
       </div>
     );
   }
