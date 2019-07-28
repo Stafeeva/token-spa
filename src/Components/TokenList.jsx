@@ -3,10 +3,35 @@ import autobind from 'autobind-decorator';
 import { Row, Col, Button } from 'antd';
 
 import SearchField from './SearchField.jsx';
+import TokenTable from './TokenTable.jsx';
+
+const tokens = [
+  {
+    key: '1',
+    tokenName: 'Test',
+    tockenTicker: 'blah',
+    totalSupply: '10000',
+    creationDate: 'test',
+    issuerName: 'Dylan The Dog',
+    template: '123',
+  },
+];
 
 class TokenList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tokens,
+    }
+  }
+
   @autobind filterTokens(filter) {
-    console.log('filtering...', filter);
+    console.log('tokens', tokens);
+
+    this.setState({
+      tokens: tokens.filter(token => token.tokenName.includes(filter)),
+    });
   }
 
   @autobind onClickIssueToken() {
@@ -20,6 +45,7 @@ class TokenList extends Component {
 
   render () {
     const { filterTokens, onClickExportToCSV, onClickIssueToken } = this;
+    const { tokens } = this.state;
 
     return (
       <div>
@@ -35,6 +61,7 @@ class TokenList extends Component {
             <Button type="primary" onClick={onClickExportToCSV}>Export To CSV</Button>
           </Col>
         </Row>
+        <TokenTable tokens={tokens} />
       </div>
     );
   }
