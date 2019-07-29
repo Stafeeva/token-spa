@@ -4,6 +4,8 @@ import moment from 'moment';
 import { Form, Input, Button, Select } from 'antd';
 const { Option } = Select;
 
+import './token-form.css';
+
 const DATE_FORMAT = 'DD MMM YYYY'
 
 class TokenForm extends Component {
@@ -32,7 +34,7 @@ class TokenForm extends Component {
     const { handleSubmit } = this;
 
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="token-form">
         <Form.Item>
           {getFieldDecorator('tokenName', {
             rules: [{ required: true, message: 'Please input token name' }],

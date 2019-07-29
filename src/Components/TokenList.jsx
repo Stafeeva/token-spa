@@ -13,18 +13,25 @@ class TokenList extends Component {
     super(props);
 
     this.props.dispatch(fetchTokens());
+
+    this.state = {
+      showSearchResults: false,
+      filteredTokens: [],
+    };
   }
 
   filterTokens = filter => {
-    console.log('tokens', tokens);
-
-    this.setState({
-      tokens: tokens.filter(token => token.tokenName.includes(filter)),
-    });
-  }
-
-  onClickIssueToken = () => {
-    console.log('clicked Issue Token');
+    if (filter === '') {
+      this.setState({
+        showSearchResults: false,
+        filteredTokens: [],
+      });
+    } else {
+      this.setState({
+        showSearchResults: true,
+        filteredTokens: this.props.tokens.filter(token => token.tokenName.includes(filter) || token.tokenTicker.includes(filter)),
+      });
+    }
   }
 
   onClickExportToCSV = () => {
@@ -41,25 +48,25 @@ class TokenList extends Component {
       deleteToken,
       filterTokens,
       onClickExportToCSV,
-      onClickIssueToken,
     } = this;
+    const { showSearchResults, filteredTokens } = this.state;
     const { tokens } = this.props;
 
     return (
       <div>
         <h1>Token List</h1>
         <Row gutter={16}>
-          <Col span={18}>
+          <Col span={17}>
             <SearchField onType={filterTokens}/>
           </Col>
           <Col span={3}>
-            <Button type="primary" onClick={onClickIssueToken}><Link to="/tokens/add">Issue Token</Link></Button>
+            <Link to="/tokens/add"><Button type="primary">Issue Token</Button></Link>
           </Col>
           <Col span={3}>
             <Button type="primary" onClick={onClickExportToCSV}>Export To CSV</Button>
           </Col>
         </Row>
-        <TokenTable tokens={tokens} onClickDelete={deleteToken} />
+        <TokenTable tokens={showSearchResults ? filteredTokens : tokens} onClickDelete={deleteToken} />
       </div>
     );
   }

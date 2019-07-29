@@ -26,10 +26,10 @@ class TokenAdd extends Component {
         <TokenForm saveToken={saveToken} />
         <Button
           type="primary"
-          type="button"
+          htmlType="button"
           onClick={onClickClose}
         >
-          Close
+          Go back
         </Button>
       </div>
     );

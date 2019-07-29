@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import { Icon, Input } from 'antd';
 
 class SearchField extends Component {
   static propTypes = {
@@ -23,7 +23,7 @@ class SearchField extends Component {
       search: value,
     });
 
-    if (value.length > 2) {
+    if (value.length > 2 || value === '') {
       onType(value);
     }
   }
@@ -32,15 +32,14 @@ class SearchField extends Component {
     const { search } = this.state;
     const { onChangeSearch } = this;
 
-    return (
-      <div>
-        <Input
-          onChange={onChangeSearch}
-          value={search}
-          type="text"
-          placeholder="Search"
-        />
-      </div>
+  return (
+      <Input
+        prefix={<Icon type="search" />}
+        onChange={onChangeSearch}
+        value={search}
+        type="text"
+        placeholder="Token name or ticker"
+      />
     );
   }
 }
