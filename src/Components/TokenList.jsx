@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import autobind from 'autobind-decorator';
 import { Row, Col, Button } from 'antd';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -16,7 +15,7 @@ class TokenList extends Component {
     this.props.dispatch(fetchTokens());
   }
 
-  @autobind filterTokens(filter) {
+  filterTokens = filter => {
     console.log('tokens', tokens);
 
     this.setState({
@@ -24,11 +23,11 @@ class TokenList extends Component {
     });
   }
 
-  @autobind onClickIssueToken() {
+  onClickIssueToken = () => {
     console.log('clicked Issue Token');
   }
 
-  @autobind onClickExportToCSV() {
+  onClickExportToCSV = () => {
     console.log('clicked Export To CSV');
   }
 

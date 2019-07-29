@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import autobind from 'autobind-decorator';
 import { Input } from 'antd';
 
 class SearchField extends Component {
@@ -16,7 +15,7 @@ class SearchField extends Component {
     }
   }
 
-  @autobind onChangeSearch(event) {
+  onChangeSearch = event => {
     const { value } = event.target;
     const { onType } = this.props;
 
