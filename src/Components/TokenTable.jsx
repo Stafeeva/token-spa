@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import { Table } from 'antd';
 
@@ -39,7 +40,6 @@ const columns = [
 class TokenTable extends Component {
   static propTypes = {
     tokens: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
       tokenName: PropTypes.string.isRequired,
       tokenTicker: PropTypes.string.isRequired,
       totalSupply: PropTypes.string.isRequired,
@@ -53,7 +53,7 @@ class TokenTable extends Component {
     const { tokens } = this.props;
 
     return (
-      <Table dataSource={tokens} columns={columns} />
+      <Table dataSource={tokens} columns={columns} rowKey={token => token.id} />
     );
   }
 }

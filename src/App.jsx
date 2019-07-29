@@ -20,8 +20,6 @@ class App extends Component {
     return (
       <Router>
         <Layout>
-
-          <Route exact path="/" component={TokenList} />
           <Route exact path="/tokens" component={TokenList} />
           <Route path="/tokens/add" component={TokenAdd} />
         </Layout>
