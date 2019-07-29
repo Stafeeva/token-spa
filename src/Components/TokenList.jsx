@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import SearchField from './SearchField.jsx';
 import TokenTable from './TokenTable.jsx';
 
-import { fetchTokens } from '../actions';
+import { deleteToken, fetchTokens } from '../actions';
 
 class TokenList extends Component {
   constructor(props) {
@@ -31,9 +31,18 @@ class TokenList extends Component {
     console.log('clicked Export To CSV');
   }
 
+  deleteToken = id => {
+    this.props.dispatch(deleteToken(id));
+  }
+
 
   render () {
-    const { filterTokens, onClickExportToCSV, onClickIssueToken } = this;
+    const {
+      deleteToken,
+      filterTokens,
+      onClickExportToCSV,
+      onClickIssueToken,
+    } = this;
     const { tokens } = this.props;
 
     return (
@@ -50,7 +59,7 @@ class TokenList extends Component {
             <Button type="primary" onClick={onClickExportToCSV}>Export To CSV</Button>
           </Col>
         </Row>
-        <TokenTable tokens={tokens} />
+        <TokenTable tokens={tokens} onClickDelete={deleteToken} />
       </div>
     );
   }
