@@ -1,36 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Icon, Input } from 'antd';
 
+import { filterTokens } from '../actions';
+
 class SearchField extends Component {
-  static propTypes = {
-    onType: PropTypes.func.isRequired,
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      search: '',
-    }
-  }
 
   onChangeSearch = event => {
     const { value } = event.target;
-    const { onType } = this.props;
+    const { dispatch } = this.props;
 
-    this.setState({
-      search: value,
-    });
-
-    if (value.length > 2 || value === '') {
-      onType(value);
-    }
+    dispatch(filterTokens(value));
   }
 
   render() {
-    const { search } = this.state;
     const { onChangeSearch } = this;
+    const { search } = this.props;
 
   return (
       <Input
@@ -44,4 +30,8 @@ class SearchField extends Component {
   }
 }
 
-export default SearchField;
+const mapStateToProps = state => ({
+  search: state.tokens.filterText,
+});
+
+export default connect(mapStateToProps)(SearchField);

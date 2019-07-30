@@ -1,9 +1,21 @@
-import { SET_TOKENS } from '../actions';
+import { SET_TOKENS, FILTER_TOKENS } from '../actions';
 
-const tokens = (state = [], action) => {
+const initialState = {
+  tokenList: [],
+  filterText: '',
+};
+
+const tokens = (state = initialState, action) => {
   switch (action.type) {
     case SET_TOKENS:
-      return action.tokens;
+      return Object.assign({}, state, {
+        tokenList: action.tokens
+      });
+
+    case FILTER_TOKENS:
+      return Object.assign({}, state, {
+        filterText: action.filterText
+      });
 
     default:
       return state;

@@ -13,25 +13,6 @@ class TokenList extends Component {
     super(props);
 
     this.props.dispatch(fetchTokens());
-
-    this.state = {
-      showSearchResults: false,
-      filteredTokens: [],
-    };
-  }
-
-  filterTokens = filter => {
-    if (filter === '') {
-      this.setState({
-        showSearchResults: false,
-        filteredTokens: [],
-      });
-    } else {
-      this.setState({
-        showSearchResults: true,
-        filteredTokens: this.props.tokens.filter(token => token.tokenName.includes(filter) || token.tokenTicker.includes(filter)),
-      });
-    }
   }
 
   onClickExportToCSV = () => {
@@ -42,14 +23,8 @@ class TokenList extends Component {
     this.props.dispatch(deleteToken(id));
   }
 
-
   render () {
-    const {
-      deleteToken,
-      filterTokens,
-      onClickExportToCSV,
-    } = this;
-    const { showSearchResults, filteredTokens } = this.state;
+    const { deleteToken, onClickExportToCSV } = this;
     const { tokens } = this.props;
 
     return (
@@ -57,7 +32,7 @@ class TokenList extends Component {
         <h1>Token List</h1>
         <Row gutter={16}>
           <Col span={17}>
-            <SearchField onType={filterTokens}/>
+            <SearchField />
           </Col>
           <Col span={3}>
             <Link to="/tokens/add"><Button type="primary">Issue Token</Button></Link>
@@ -66,16 +41,22 @@ class TokenList extends Component {
             <Button type="primary" onClick={onClickExportToCSV}>Export To CSV</Button>
           </Col>
         </Row>
-        <TokenTable tokens={showSearchResults ? filteredTokens : tokens} onClickDelete={deleteToken} />
+        <TokenTable tokens={tokens} onClickDelete={deleteToken} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    tokens: state.tokens,
-  };
-};
+const filterTokenList = (tokens, filterText) => {
+  if (filterText === '' || filterText.length < 3) {
+    return tokens;
+  }
+
+  return tokens.filter(token => token.tokenName.includes(filterText));
+}
+
+const mapStateToProps = ({ tokens : { filterText, tokenList }}) => ({
+  tokens: filterTokenList(tokenList, filterText),
+});
 
 export default connect(mapStateToProps)(TokenList);
