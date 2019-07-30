@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-
+import { connect } from 'react-redux';
 import { Table, Icon, Button } from 'antd';
 const { Column } = Table;
 
+import { deleteToken, fetchTokens } from '../actions';
+
 class TokenTable extends Component {
   static propTypes = {
-    onClickDelete: PropTypes.func.isRequired,
     tokens: PropTypes.arrayOf(PropTypes.shape({
       tokenName: PropTypes.string.isRequired,
       tokenTicker: PropTypes.string.isRequired,
@@ -18,8 +19,19 @@ class TokenTable extends Component {
     })),
   }
 
+  constructor(props) {
+    super(props);
+
+    this.props.dispatch(fetchTokens());
+  }
+
+  deleteToken = id => {
+    this.props.dispatch(deleteToken(id));
+  }
+
   render() {
-    const { onClickDelete, tokens } = this.props;
+    const { tokens } = this.props;
+    const { deleteToken } = this;
 
     return (
       <Table
@@ -38,7 +50,7 @@ class TokenTable extends Component {
           render={token => (
             <span>
               <Button
-                onClick={() => onClickDelete(token.id)}
+                onClick={() => deleteToken(token.id)}
                 type="link"
               >
                 <Icon type="delete" />
@@ -51,4 +63,23 @@ class TokenTable extends Component {
   }
 }
 
-export default TokenTable;
+const filterTokenList = (tokens, filterText) => {
+  if (filterText === '' || filterText.length < 3) {
+    return tokens;
+  }
+
+  const text = filterText.toLowerCase();
+
+  return tokens.filter(token => {
+    const name = token.tokenName.toLowerCase();
+    const ticker = token.tokenTicker.toLowerCase();
+
+    return name.includes(text) || ticker.includes(text);
+  });
+};
+
+const mapStateToProps = ({ tokens : { filterText, tokenList }}) => ({
+  tokens: filterTokenList(tokenList, filterText),
+});
+
+export default connect(mapStateToProps)(TokenTable);
