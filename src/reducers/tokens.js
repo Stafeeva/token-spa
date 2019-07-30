@@ -1,4 +1,4 @@
-import { SET_TOKENS, FILTER_TOKENS } from '../actions';
+import { SET_TOKENS, FILTER_TOKENS } from '../actions/tokens';
 
 const initialState = {
   tokenList: [],

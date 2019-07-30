@@ -1,4 +1,4 @@
-import { SET_COUNTRIES } from '../actions';
+import { SET_COUNTRIES } from '../actions/countries';
 
 const countries = (state = [], action) => {
   switch (action.type) {

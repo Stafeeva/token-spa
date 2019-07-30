@@ -5,7 +5,7 @@ import {
   ADD_TOKEN,
   DELETE_TOKEN,
   FETCH_TOKENS,
-} from '../actions';
+} from '../actions/tokens';
 
 const getTokensFromLocalStorage = () => {
   const tokens = JSON.parse(localStorage.getItem('tokens'));
@@ -43,7 +43,7 @@ const tokenMiddleware = store => next => action => {
       deleteTokenFromLocalStorage(action.id)
       store.dispatch(fetchTokens());
       break;
-      
+
     case FETCH_TOKENS:
       store.dispatch(setTokens(getTokensFromLocalStorage()));
       break;

@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { Button } from 'antd';
 
-import { fetchCountries } from '../actions';
+import { addToken } from '../actions/tokens';
+import { fetchCountries } from '../actions/countries';
 
 import TokenForm from './TokenForm.jsx';
-
-import { addToken } from '../actions';
 
 class TokenAdd extends Component {
   constructor(props) {

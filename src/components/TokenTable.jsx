@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Table, Icon, Button } from 'antd';
 const { Column } = Table;
 
-import { deleteToken, fetchTokens } from '../actions';
+import { deleteToken, fetchTokens } from '../actions/tokens';
 
 class TokenTable extends Component {
   static propTypes = {

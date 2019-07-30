@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Input } from 'antd';
 
-import { filterTokens } from '../actions';
+import { filterTokens } from '../actions/tokens';
 
 class SearchField extends Component {
 
