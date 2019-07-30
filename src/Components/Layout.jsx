@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Row, Col, Menu } from 'antd';
 
 const Layout = (props) => (
-  <Row gutter={24}>
+  <Row gutter={36}>
     <Col span={6}>
       <Menu>
         <Menu.Item><Link to="/tokens/add">Issue Token</Link></Menu.Item>

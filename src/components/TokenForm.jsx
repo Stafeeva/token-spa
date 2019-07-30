@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+const axios = require('axios');
 import { Form, Input, Button, Select } from 'antd';
 const { Option } = Select;
 
 import './token-form.css';
 
 const DATE_FORMAT = 'DD MMM YYYY'
+const COUNTRIES_API = 'https://restcountries.eu/rest/v2/all';
 
 class TokenForm extends Component {
   static propTypes = {
     saveToken: PropTypes.func.isRequired,
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      countries: [],
+    };
   }
 
   handleSubmit = event => {
@@ -29,9 +39,32 @@ class TokenForm extends Component {
     });
   };
 
+  fetchCountries = () => {
+    axios.get(COUNTRIES_API).then(response => {
+       this.setState({
+         countries: response.data,
+       });
+    }).catch(err => console.log(err));
+  }
+
+  getCountriesOptions = () => {
+    if (this.state.countries.length < 1) {
+      this.fetchCountries();
+    }
+
+    return this.state.countries.map(country => (
+      <Option
+        key={country.alpha2Code}
+        value={country.alpha2Code}
+      >
+        {country.name}
+      </Option>
+    ));
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { handleSubmit } = this;
+    const { getCountriesOptions, handleSubmit } = this;
 
     return (
       <Form onSubmit={handleSubmit} className="token-form">
@@ -91,7 +124,7 @@ class TokenForm extends Component {
             <Select
               placeholder="Country"
             >
-              <Option value="ch">Switzerland</Option>
+              {getCountriesOptions()}
             </Select>,
           )}
         </Form.Item>
