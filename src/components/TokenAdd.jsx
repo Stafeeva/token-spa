@@ -13,11 +13,11 @@ class TokenAdd extends Component {
   constructor(props) {
     super(props);
 
-    this.props.dispatch(fetchCountries());
+    this.props.fetchCountries();
   }
 
   saveToken = token => {
-    this.props.dispatch(addToken(token));
+    this.props.addToken(token);
     this.props.history.push("/tokens");
   }
 
@@ -50,4 +50,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(TokenAdd));
+const mapDispatchToProps = dispatch => ({
+  fetchCountries: () => dispatch(fetchCountries()),
+  addToken: token => dispatch(addToken(token)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TokenAdd));

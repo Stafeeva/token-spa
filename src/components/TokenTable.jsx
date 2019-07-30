@@ -22,16 +22,11 @@ class TokenTable extends Component {
   constructor(props) {
     super(props);
 
-    this.props.dispatch(fetchTokens());
-  }
-
-  deleteToken = id => {
-    this.props.dispatch(deleteToken(id));
+    this.props.fetchTokens();
   }
 
   render() {
-    const { tokens } = this.props;
-    const { deleteToken } = this;
+    const { tokens, deleteToken } = this.props;
 
     return (
       <Table
@@ -82,4 +77,9 @@ const mapStateToProps = ({ tokens : { filterText, tokenList }}) => ({
   tokens: filterTokenList(tokenList, filterText),
 });
 
-export default connect(mapStateToProps)(TokenTable);
+const mapDispatchToProps = dispatch => ({
+  fetchTokens: () => dispatch(fetchTokens()),
+  deleteToken: id => dispatch(deleteToken(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TokenTable);
