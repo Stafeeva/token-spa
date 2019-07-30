@@ -13,25 +13,16 @@ class TokenForm extends Component {
     saveToken: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      countries: [],
-    };
-  }
-
   handleSubmit = event => {
     event.preventDefault();
 
     const { form: { validateFields }, saveToken } = this.props;
 
     validateFields((err, values) => {
-      const newToken = values;
-
-      newToken.creationDate = moment().format(DATE_FORMAT);
-
       if (!err) {
+        const newToken = values;
+
+        newToken.creationDate = moment().format(DATE_FORMAT);
         saveToken(newToken);
       }
     });
@@ -42,8 +33,8 @@ class TokenForm extends Component {
 
     return countries.map(country => (
       <Option
-        key={country.alpha2Code}
-        value={country.alpha2Code}
+        key={country.code}
+        value={country.code}
       >
         {country.name}
       </Option>

@@ -11,7 +11,12 @@ const countryMiddleware = store => next => action => {
   switch (action.type) {
     case FETCH_COUNTRIES:
       axios.get(COUNTRIES_API).then(response => {
-        store.dispatch(setCountries(response.data));
+        const countries = response.data.map(country => ({
+          name: country.name,
+          code: country.alpha2Code,
+        }));
+
+        store.dispatch(setCountries(countries));
       }).catch(err => console.log(err));
       break;
 
