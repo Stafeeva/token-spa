@@ -36,20 +36,16 @@ const tokenMiddleware = store => next => action => {
   switch (action.type) {
     case ADD_TOKEN:
       addTokenToLocalStorage(action.token);
-
       store.dispatch(fetchTokens());
-
       break;
     case DELETE_TOKEN:
       deleteTokenFromLocalStorage(action.id)
-
       store.dispatch(fetchTokens());
-
       break;
     case FETCH_TOKENS:
       store.dispatch(setTokens(getTokensFromLocalStorage()));
-
       break;
+      
     default:
       return next(action);
   }

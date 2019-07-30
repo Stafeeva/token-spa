@@ -3,11 +3,19 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { Button } from 'antd';
 
+import { fetchCountries } from '../actions';
+
 import TokenForm from './TokenForm.jsx';
 
 import { addToken } from '../actions';
 
 class TokenAdd extends Component {
+  constructor(props) {
+    super(props);
+
+    this.props.dispatch(fetchCountries());
+  }
+
   saveToken = token => {
     this.props.dispatch(addToken(token));
     this.props.history.push("/tokens");
@@ -23,7 +31,7 @@ class TokenAdd extends Component {
     return (
       <div>
         <h1>Issue Token</h1>
-        <TokenForm saveToken={saveToken} />
+        <TokenForm countries={this.props.countries} saveToken={saveToken} />
         <Button
           type="primary"
           htmlType="button"
@@ -36,4 +44,10 @@ class TokenAdd extends Component {
   }
 }
 
-export default withRouter(connect()(TokenAdd));
+const mapStateToProps = state => {
+  return {
+    countries: state.countries,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(TokenAdd));
