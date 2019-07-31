@@ -8,14 +8,15 @@ import { filterTokens } from '../actions/tokens';
 class SearchField extends Component {
 
   static propTypes = {
+    filterTokens: PropTypes.func.isRequired,
     search: PropTypes.string.isRequired,
   }
 
   onChangeSearch = event => {
     const { value } = event.target;
-    const { dispatch } = this.props;
+    const { filterTokens } = this.props;
 
-    dispatch(filterTokens(value));
+    filterTokens(value);
   }
 
   render() {
@@ -38,4 +39,9 @@ const mapStateToProps = state => ({
   search: state.tokens.filterText,
 });
 
-export default connect(mapStateToProps)(SearchField);
+const mapDispatchToProps = dispatch => ({
+  filterTokens: text => dispatch(filterTokens(text)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchField);
