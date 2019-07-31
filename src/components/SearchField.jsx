@@ -43,5 +43,4 @@ const mapDispatchToProps = dispatch => ({
   filterTokens: text => dispatch(filterTokens(text)),
 });
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(SearchField);
