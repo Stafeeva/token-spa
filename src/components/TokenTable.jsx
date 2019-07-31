@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Table, Icon, Button } from 'antd';
+import { Table, Icon, Button, Modal } from 'antd';
 const { Column } = Table;
+const { confirm } = Modal;
 
 import { deleteToken, fetchTokens } from '../actions/tokens';
 
@@ -28,8 +29,23 @@ class TokenTable extends Component {
     this.props.fetchTokens();
   }
 
+  showConfirm = id => {
+    const { deleteToken } = this.props;
+
+    confirm({
+      title: 'Do you want to delete these token?',
+      okText: 'Delete',
+      okType: 'danger',
+
+      onOk() {
+        deleteToken(id);
+      },
+    });
+  }
+
   render() {
-    const { deleteToken, tokens } = this.props;
+    const { tokens } = this.props;
+    const { showConfirm } = this;
 
     return (
       <Table
@@ -48,7 +64,7 @@ class TokenTable extends Component {
           render={token => (
             <span>
               <Button
-                onClick={() => deleteToken(token.id)}
+                onClick={() => showConfirm(token.id)}
                 type="link"
               >
                 <Icon type="delete" />

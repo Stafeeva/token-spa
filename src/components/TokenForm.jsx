@@ -90,7 +90,6 @@ class TokenForm extends Component {
             rules: [{ required: true, message: 'Please select a template' }],
           })(
             <Select
-              initialValue="erc20"
               placeholder="Template"
             >
               <Option value="erc20">ERC20</Option>
