@@ -6,10 +6,10 @@ const { Option } = Select;
 
 import './token-form.css';
 
-const DATE_FORMAT = 'DD MMM YYYY'
+const DATE_FORMAT = 'DD MMM YYYY';
 
 class TokenForm extends Component {
-  
+
   static propTypes = {
     saveToken: PropTypes.func.isRequired,
   }
@@ -78,7 +78,7 @@ class TokenForm extends Component {
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('issuerName', {
-            rules: [{ required: true, message: 'Please input issuer name!' }],
+            rules: [{ required: true, message: 'Please input issuer name' }],
           })(
             <Input
               placeholder="Issue name"

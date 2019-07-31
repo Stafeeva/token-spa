@@ -17,7 +17,7 @@ class TokenList extends Component {
     return (
       <div>
         <h1>Token List</h1>
-        <Row gutter={16}>
+        <Row gutter={16} style={{ margin: '1rem 0 2rem' }}>
           <Col span={17}>
             <SearchField />
           </Col>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import { Button } from 'antd';
+import { Modal, Button } from 'antd';
 
 import { addToken } from '../actions/tokens';
 import { fetchCountries } from '../actions/countries';
@@ -40,7 +40,7 @@ class TokenAdd extends Component {
     const { countries } = this.props;
 
     return (
-      <div>
+      <div style={{ marginTop: '1rem' }}>
         <h1>Issue Token</h1>
         <TokenForm
           countries={countries}
