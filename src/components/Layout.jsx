@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { Row, Col, Menu } from 'antd';
 
-const Layout = (props) => (
+const Layout = props => (
   <Row gutter={36}>
     <Col span={6}>
       <Menu>

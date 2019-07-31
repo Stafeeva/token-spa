@@ -9,6 +9,7 @@ import './token-form.css';
 const DATE_FORMAT = 'DD MMM YYYY'
 
 class TokenForm extends Component {
+  
   static propTypes = {
     saveToken: PropTypes.func.isRequired,
   }

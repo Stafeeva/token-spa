@@ -8,7 +8,10 @@ const { Column } = Table;
 import { deleteToken, fetchTokens } from '../actions/tokens';
 
 class TokenTable extends Component {
+
   static propTypes = {
+    deleteToken: PropTypes.func.isRequired,
+    fetchTokens: PropTypes.func.isRequired,
     tokens: PropTypes.arrayOf(PropTypes.shape({
       tokenName: PropTypes.string.isRequired,
       tokenTicker: PropTypes.string.isRequired,
@@ -26,7 +29,7 @@ class TokenTable extends Component {
   }
 
   render() {
-    const { tokens, deleteToken } = this.props;
+    const { deleteToken, tokens } = this.props;
 
     return (
       <Table

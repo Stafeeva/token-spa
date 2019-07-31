@@ -7,6 +7,10 @@ import { filterTokens } from '../actions/tokens';
 
 class SearchField extends Component {
 
+  static propTypes = {
+    search: PropTypes.string.isRequired,
+  }
+
   onChangeSearch = event => {
     const { value } = event.target;
     const { dispatch } = this.props;
