@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import { Modal, Button } from 'antd';
+import { Button } from 'antd';
 
 import { addToken } from '../actions/tokens';
 import { fetchCountries } from '../actions/countries';
@@ -18,7 +18,7 @@ class TokenAdd extends Component {
       code: PropTypes.string,
     })).isRequired,
     fetchCountries: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -29,11 +29,11 @@ class TokenAdd extends Component {
   saveToken = token => {
     this.props.addToken(token);
     this.props.history.push("/tokens");
-  }
+  };
 
   onClickClose = () => {
     this.props.history.push("/tokens");
-  }
+  };
 
   render() {
     const { onClickClose, saveToken } = this;
