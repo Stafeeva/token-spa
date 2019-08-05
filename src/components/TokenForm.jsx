@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Form, Input, Button, Select } from 'antd';
-const { Option } = Select;
+import { Button, Form, Input, Select } from 'antd';
 
 import './token-form.css';
 
 const DATE_FORMAT = 'DD MMM YYYY';
+const { Option } = Select;
 
 class TokenForm extends Component {
 
@@ -44,10 +44,8 @@ class TokenForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { getCountriesOptions, handleSubmit } = this;
-
     return (
-      <Form onSubmit={handleSubmit} className="token-form">
+      <Form onSubmit={this.handleSubmit} className="token-form">
         <Form.Item>
           {getFieldDecorator('tokenName', {
             rules: [{ required: true, message: 'Please input token name' }],
@@ -103,7 +101,7 @@ class TokenForm extends Component {
             <Select
               placeholder="Country"
             >
-              {getCountriesOptions()}
+              {this.getCountriesOptions()}
             </Select>,
           )}
         </Form.Item>

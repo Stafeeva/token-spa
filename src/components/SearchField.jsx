@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Input } from 'antd';
 
@@ -17,13 +17,13 @@ class SearchField extends Component {
     const { filterTokens } = this.props;
 
     filterTokens(value);
-  }
+  };
 
   render() {
     const { onChangeSearch } = this;
     const { search } = this.props;
 
-  return (
+    return (
       <Input
         prefix={<Icon type="search" />}
         onChange={onChangeSearch}
