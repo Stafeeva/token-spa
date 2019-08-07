@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { connect } from 'react-redux';
-import { Table, Icon, Button, Modal } from 'antd';
+import { Button, Icon, Modal, Table } from 'antd';
+import { deleteToken, fetchTokens } from '../actions/tokens';
+
 const { Column } = Table;
 const { confirm } = Modal;
-
-import { deleteToken, fetchTokens } from '../actions/tokens';
 
 class TokenTable extends Component {
 
@@ -92,7 +91,7 @@ const filterTokenList = (tokens, filterText) => {
   });
 };
 
-const mapStateToProps = ({ tokens : { filterText, tokenList }}) => ({
+const mapStateToProps = ({ tokens: { filterText, tokenList } }) => ({
   tokens: filterTokenList(tokenList, filterText),
 });
 

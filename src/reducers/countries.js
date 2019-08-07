@@ -8,6 +8,6 @@ const countries = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 export default countries;

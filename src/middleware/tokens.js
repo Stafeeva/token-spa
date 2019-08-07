@@ -1,11 +1,5 @@
-const uuidv4 = require('uuid/v4');
-import {
-  fetchTokens,
-  setTokens,
-  ADD_TOKEN,
-  DELETE_TOKEN,
-  FETCH_TOKENS,
-} from '../actions/tokens';
+import * as uuidv4 from 'uuid/v4';
+import { ADD_TOKEN, DELETE_TOKEN, FETCH_TOKENS, fetchTokens, setTokens } from '../actions/tokens';
 
 const getTokensFromLocalStorage = () => {
   const tokens = JSON.parse(localStorage.getItem('tokens'));
@@ -30,7 +24,7 @@ const deleteTokenFromLocalStorage = id => {
   const tokensToUpdate = getTokensFromLocalStorage();
 
   writeTokensToLocalStorage(tokensToUpdate.filter(token => token.id !== id));
-}
+};
 
 const tokenMiddleware = store => next => action => {
   switch (action.type) {

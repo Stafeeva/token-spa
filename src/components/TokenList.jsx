@@ -12,8 +12,6 @@ class TokenList extends Component {
   }
 
   render () {
-    const { onClickExportToCSV } = this;
-
     return (
       <div>
         <h1>Token List</h1>
@@ -25,7 +23,7 @@ class TokenList extends Component {
             <Link to="/tokens/add"><Button type="primary">Issue Token</Button></Link>
           </Col>
           <Col span={3}>
-            <Button type="primary" onClick={onClickExportToCSV}>Export To CSV</Button>
+            <Button type="primary" onClick={this.onClickExportToCSV}>Export To CSV</Button>
           </Col>
         </Row>
         <TokenTable />

@@ -1,5 +1,5 @@
-const axios = require('axios');
-import { fetchCountries, setCountries, FETCH_COUNTRIES } from '../actions/countries';
+import axios from 'axios';
+import { FETCH_COUNTRIES, setCountries } from '../actions/countries';
 
 const COUNTRIES_API = 'https://restcountries.eu/rest/v2/all';
 

@@ -20,6 +20,6 @@ const tokens = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default tokens;
